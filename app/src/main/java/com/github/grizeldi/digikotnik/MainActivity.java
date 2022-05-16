@@ -6,6 +6,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Arrays;
@@ -20,12 +21,17 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private float[] magnetCache = new float[3];
     private float[] directionCache = new float[5];
 
-    private float[] outputCache;
+    private float[] outputCache; // Everything in here is stored in radians (values from -pi to pi)
+
+    // Views
+    private TextView angleDisplayText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        angleDisplayText = findViewById(R.id.angleDisplayText);
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
@@ -78,5 +84,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             SensorManager.getRotationMatrixFromVector(rotationMatrix, directionCache);
         SensorManager.getOrientation(rotationMatrix, orientationAngles);
         outputCache = orientationAngles;
+        angleDisplayText.setText((int)(orientationAngles[0] / Math.PI * 180) + getString(R.string.angleUnit));
     }
 }
