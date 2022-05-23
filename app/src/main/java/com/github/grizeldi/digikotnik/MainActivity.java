@@ -7,83 +7,72 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.widget.TextView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+import com.github.grizeldi.digikotnik.fragment.MeasurementFragment;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.Arrays;
 
-public class MainActivity extends AppCompatActivity implements SensorEventListener {
-    public static final boolean USE_FALLBACK_SENSORS = false;
-    private SensorManager sensorManager;
-    private Sensor accelometerSensor, magneticSensor, dirVectorSensor;
-
-    // Sensor data cache
-    private float[] accelometerCache = new float[3];
-    private float[] magnetCache = new float[3];
-    private float[] directionCache = new float[5];
-
-    private float[] outputCache; // Everything in here is stored in radians (values from -pi to pi)
-
-    // Views
-    private TextView angleDisplayText;
+public class MainActivity extends AppCompatActivity {
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        angleDisplayText = findViewById(R.id.angleDisplayText);
+        tabLayout = findViewById(R.id.tabs);
+        viewPager = findViewById(R.id.viewpager);
 
-        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        tabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);
+        viewPager.setAdapter(new Pager(this, getSupportFragmentManager(), tabLayout.getTabCount()));
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+            }
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+            }
+        });
+    }
+}
 
-        accelometerSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        magneticSensor = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
-        dirVectorSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
+class Pager extends FragmentPagerAdapter {
+    Context context;
+    int totalTabs;
+    public Pager(Context c, FragmentManager fm, int totalTabs) {
+        super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        context = c;
+        this.totalTabs = totalTabs;
     }
 
+    @NonNull
     @Override
-    protected void onResume() {
-        super.onResume();
-        if (USE_FALLBACK_SENSORS) {
-            sensorManager.registerListener(this, accelometerSensor, SensorManager.SENSOR_DELAY_NORMAL);
-            sensorManager.registerListener(this, magneticSensor, SensorManager.SENSOR_DELAY_NORMAL);
-        } else {
-            sensorManager.registerListener(this, dirVectorSensor, SensorManager.SENSOR_DELAY_NORMAL);
+    public Fragment getItem(int position) {
+        switch (position){
+            case 0:
+                return new MeasurementFragment();
+            case 1:
+                return new RecentFragment();
+            default:
+                return null;
         }
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-        sensorManager.unregisterListener(this);
-    }
-
-    @Override
-    public void onSensorChanged(SensorEvent sensorEvent) {
-//        System.out.println(sensorEvent.sensor.getName() + " " + Arrays.toString(sensorEvent.values));
-        if (sensorEvent.sensor == accelometerSensor) {
-            accelometerCache = sensorEvent.values;
-        } else if (sensorEvent.sensor == magneticSensor) {
-            magnetCache = sensorEvent.values;
-        } else if (sensorEvent.sensor == dirVectorSensor) {
-            directionCache = sensorEvent.values;
-        }
-        updateValues();
-    }
-
-    @Override
-    public void onAccuracyChanged(Sensor sensor, int i) {
-
-    }
-
-    private void updateValues() {
-        final float[] rotationMatrix = new float[9];
-        final float[] orientationAngles = new float[3];
-        if (USE_FALLBACK_SENSORS)
-            SensorManager.getRotationMatrix(rotationMatrix, null, accelometerCache, magnetCache);
-        else
-            SensorManager.getRotationMatrixFromVector(rotationMatrix, directionCache);
-        SensorManager.getOrientation(rotationMatrix, orientationAngles);
-        outputCache = orientationAngles;
-        angleDisplayText.setText((int)(orientationAngles[0] / Math.PI * 180) + getString(R.string.angleUnit));
+    public int getCount() {
+        return totalTabs;
     }
 }
