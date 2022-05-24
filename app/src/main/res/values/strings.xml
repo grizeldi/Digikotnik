@@ -3,4 +3,6 @@
     <string name="angleUnit">°</string>
     <string name="tab_measure">Measure</string>
     <string name="tab_recent">Recent</string>
+    <string name="reset">Reset to 0°</string>
+    <string name="save">Save measurement</string>
 </resources>

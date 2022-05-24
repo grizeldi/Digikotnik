@@ -3,6 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/marko/AndroidStudioProjects/Digikotnik/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2255" />
+        <entry key="..\:/Users/marko/AndroidStudioProjects/Digikotnik/app/src/main/res/drawable/box.xml" value="0.27" />
+        <entry key="..\:/Users/marko/AndroidStudioProjects/Digikotnik/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2255" />
+        <entry key="..\:/Users/marko/AndroidStudioProjects/Digikotnik/app/src/main/res/layout/activity_main.xml" value="0.28125" />
+        <entry key="..\:/Users/marko/AndroidStudioProjects/Digikotnik/app/src/main/res/layout/box.xml" value="0.3255208333333333" />
+        <entry key="..\:/Users/marko/AndroidStudioProjects/Digikotnik/app/src/main/res/layout/fragment_measurement.xml" value="0.3255208333333333" />
+        <entry key="..\:/Users/marko/AndroidStudioProjects/Digikotnik/app/src/main/res/layout/fragment_recent.xml" value="0.3255208333333333" />
+        <entry key="..\:/Users/marko/AndroidStudioProjects/Digikotnik/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2255" />
+        <entry key="..\:/Users/marko/AndroidStudioProjects/Digikotnik/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2255" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18457300275482094" />
         <entry key="app/src/main/res/layout/fragment_measurement.xml" value="0.17916666666666667" />
         <entry key="app/src/main/res/layout/fragment_recent.xml" value="0.1796875" />
