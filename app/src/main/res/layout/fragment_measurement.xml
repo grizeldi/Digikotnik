@@ -19,7 +19,8 @@
 
     <TextView
         android:id="@+id/angleDisplayText"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="120dp"
         android:layout_height="200dp"
         android:background="@drawable/box"
         android:gravity="center"
@@ -30,10 +31,12 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1" />
+        app:layout_constraintVertical_bias="0.1"
+        />
 
     <TextView
-        android:layout_width="250dp"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="170dp"
         android:layout_height="50dp"
         android:background="@drawable/box"
         android:backgroundTint="@color/main_accent_disabled"
@@ -49,7 +52,8 @@
     <!-- android:autoSizeTextType="uniform" -->
 
 <!--    <Button
-        android:layout_width="250dp"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="170dp"
         android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -57,7 +61,8 @@
         app:layout_constraintTop_toTopOf="parent" /> -->
 
     <TextView
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="120dp"
         android:layout_height="70dp"
         android:background="@drawable/box"
         android:gravity="center"
@@ -70,7 +75,8 @@
         app:layout_constraintVertical_bias="0.62" />
 
     <TextView
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="120dp"
         android:layout_height="70dp"
         android:background="@drawable/box"
         android:gravity="center"
@@ -85,7 +91,8 @@
     <!-- android:autoSizeTextType="uniform" -->
 
     <TextView
-        android:layout_width="250dp"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="170dp"
         android:layout_height="50dp"
         android:background="@drawable/box"
         android:backgroundTint="@color/main_accent_disabled"
