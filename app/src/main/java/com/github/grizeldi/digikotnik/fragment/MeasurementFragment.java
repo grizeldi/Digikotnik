@@ -103,6 +103,7 @@ public class MeasurementFragment extends Fragment implements SensorEventListener
             SensorManager.getRotationMatrixFromVector(rotationMatrix, directionCache);
         SensorManager.getOrientation(rotationMatrix, orientationAngles);
         outputCache = orientationAngles;
-        angleDisplayText.setText((int)((orientationAngles[0] - originOrientation[0]) / Math.PI * 180) + getString(R.string.angleUnit));
+        int angle = (int)((orientationAngles[0] - originOrientation[0]) / Math.PI * 180);
+        angleDisplayText.setText(getString(R.string.angle_display_text, angle));
     }
 }
