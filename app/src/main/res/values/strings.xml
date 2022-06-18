@@ -17,7 +17,9 @@
     <string name="confirm">OK</string>
     <string name="cancel">Cancel</string>
 
-    <string name="azimuth">Azimuth: %1$d</string>
-    <string name="pitch">Pitch: %1$d</string>
-    <string name="roll">Roll: %1$d</string>
+    <string name="azimuth">Azimuth: %1$d°</string>
+    <string name="pitch">Pitch: %1$d°</string>
+    <string name="roll">Roll: %1$d°</string>
+
+    <string name="last_saved_entries">Last saved entries</string>
 </resources>

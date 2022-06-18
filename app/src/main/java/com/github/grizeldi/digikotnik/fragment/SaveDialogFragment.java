@@ -21,7 +21,7 @@ import com.github.grizeldi.digikotnik.data.MeasurementDao;
 import java.util.Arrays;
 
 public class SaveDialogFragment extends DialogFragment {
-    private int[] angles;
+    private final int[] angles;
     private EditText nameTextBox;
 
     public SaveDialogFragment(int... values) {
