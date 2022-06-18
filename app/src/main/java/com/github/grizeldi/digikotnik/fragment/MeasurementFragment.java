@@ -6,6 +6,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -24,7 +25,7 @@ public class MeasurementFragment extends Fragment implements SensorEventListener
     private float[] magnetCache = new float[3];
     private float[] directionCache = new float[5];
 
-    private float[] outputCache; // Everything in here is stored in radians (values from -pi to pi)
+    private float[] outputCache, originOrientation; // Everything in here is stored in radians (values from -pi to pi)
 
     // Views
     private TextView angleDisplayText;
@@ -41,6 +42,8 @@ public class MeasurementFragment extends Fragment implements SensorEventListener
         accelometerSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         magneticSensor = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
         dirVectorSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
+
+        originOrientation = new float[3];
     }
 
     @Override
@@ -49,6 +52,12 @@ public class MeasurementFragment extends Fragment implements SensorEventListener
         // Inflate the layout for this fragment
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_measurement, container, false);
         angleDisplayText = root.findViewById(R.id.angleDisplayText);
+        root.findViewById(R.id.resetButton).setOnClickListener(view -> {
+            // Copy the values over to the origin. Can't just reassign the array because references
+            originOrientation[0] = outputCache[0];
+            originOrientation[1] = outputCache[1];
+            originOrientation[2] = outputCache[2];
+        });
 
         return root;
     }
@@ -94,6 +103,6 @@ public class MeasurementFragment extends Fragment implements SensorEventListener
             SensorManager.getRotationMatrixFromVector(rotationMatrix, directionCache);
         SensorManager.getOrientation(rotationMatrix, orientationAngles);
         outputCache = orientationAngles;
-        angleDisplayText.setText((int)(orientationAngles[0] / Math.PI * 180) + getString(R.string.angleUnit));
+        angleDisplayText.setText((int)((orientationAngles[0] - originOrientation[0]) / Math.PI * 180) + getString(R.string.angleUnit));
     }
 }

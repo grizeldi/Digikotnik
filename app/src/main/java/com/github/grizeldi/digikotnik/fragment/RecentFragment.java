@@ -1,10 +1,11 @@
-package com.github.grizeldi.digikotnik;
+package com.github.grizeldi.digikotnik.fragment;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import com.github.grizeldi.digikotnik.R;
 
 public class RecentFragment extends Fragment {
 

@@ -1,12 +1,7 @@
 package com.github.grizeldi.digikotnik;
 
 import android.content.Context;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,9 +10,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import com.github.grizeldi.digikotnik.fragment.MeasurementFragment;
+import com.github.grizeldi.digikotnik.fragment.RecentFragment;
 import com.google.android.material.tabs.TabLayout;
-
-import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
