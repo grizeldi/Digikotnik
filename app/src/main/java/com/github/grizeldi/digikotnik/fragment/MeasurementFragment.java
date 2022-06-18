@@ -58,6 +58,10 @@ public class MeasurementFragment extends Fragment implements SensorEventListener
             originOrientation[1] = outputCache[1];
             originOrientation[2] = outputCache[2];
         });
+        root.findViewById(R.id.saveButton).setOnClickListener(view -> {
+            SaveDialogFragment dialog = new SaveDialogFragment(radToDeg(outputCache[0] - originOrientation[0]), radToDeg(outputCache[1] - originOrientation[1]), radToDeg(outputCache[2] - originOrientation[2]));
+            dialog.show(getFragmentManager(), "savedialog");
+        });
 
         return root;
     }
@@ -103,7 +107,11 @@ public class MeasurementFragment extends Fragment implements SensorEventListener
             SensorManager.getRotationMatrixFromVector(rotationMatrix, directionCache);
         SensorManager.getOrientation(rotationMatrix, orientationAngles);
         outputCache = orientationAngles;
-        int angle = (int)((orientationAngles[0] - originOrientation[0]) / Math.PI * 180);
+        int angle = radToDeg(orientationAngles[0] - originOrientation[0]);
         angleDisplayText.setText(getString(R.string.angle_display_text, angle));
+    }
+
+    private int radToDeg(float radians){
+        return (int) (radians / Math.PI * 180);
     }
 }

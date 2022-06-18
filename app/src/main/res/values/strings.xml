@@ -1,10 +1,23 @@
 <resources>
     <string name="app_name">Digikotnik</string>
     <string name="angleUnit">°</string>
+
+    <!-- Tabs -->
     <string name="tab_measure">Measure</string>
     <string name="tab_recent">Recent</string>
+
+    <!-- Measurement screen -->
     <string name="reset">Reset to 0°</string>
     <string name="angle_display_text">Angle: %1$d°</string>
     <string name="save">Save measurement</string>
     <string name="last_session">Last session</string>
+
+    <!-- Save popup -->
+    <string name="name">Name</string>
+    <string name="confirm">OK</string>
+    <string name="cancel">Cancel</string>
+
+    <string name="azimuth">Azimuth: %1$d</string>
+    <string name="pitch">Pitch: %1$d</string>
+    <string name="roll">Roll: %1$d</string>
 </resources>
