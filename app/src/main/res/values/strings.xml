@@ -22,4 +22,5 @@
     <string name="roll">Roll: %1$d°</string>
 
     <string name="last_saved_entries">Last saved entries</string>
+    <string name="delete_button">Delete button</string>
 </resources>
