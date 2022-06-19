@@ -14,16 +14,29 @@ import com.github.grizeldi.digikotnik.data.Measurement;
 import java.util.List;
 
 public class RecentFragment extends Fragment {
+    private ListView listView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_recent, container, false);
-        ListView entriesView = root.findViewById(R.id.recentList);
+        listView = root.findViewById(R.id.recentList);
+        updateData();
+        return root;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateData();
+    }
+
+    private void updateData(){
+        if (listView == null)
+            return;
         new Thread(() -> {
             List<Measurement> entries = DatabaseHolder.database.measurementDao().getLastTenMeasurements();
-            entriesView.setAdapter(new MeasurementAdapter(getContext(), entries));
+            listView.post(() -> listView.setAdapter(new MeasurementAdapter(getContext(), entries)));
         }).start();
-        return root;
     }
 }
