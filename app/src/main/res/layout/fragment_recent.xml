@@ -20,11 +20,12 @@
     <ListView
         android:id="@+id/recentList"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:background="@drawable/box"
         android:layout_margin="15dp"
         android:padding="5dp"
         app:layout_constraintVertical_weight="1"
-        app:layout_constraintTop_toBottomOf="@id/recentTitle" />
+        app:layout_constraintTop_toBottomOf="@id/recentTitle"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

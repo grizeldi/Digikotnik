@@ -21,6 +21,7 @@
     <string name="pitch">Pitch: %1$d°</string>
     <string name="roll">Roll: %1$d°</string>
 
-    <string name="last_saved_entries">Last saved entries</string>
+    <string name="last_saved_entries">Recent measurements</string>
+    <string name="saved_entries">Saved measurements</string>
     <string name="delete_button">Delete button</string>
 </resources>

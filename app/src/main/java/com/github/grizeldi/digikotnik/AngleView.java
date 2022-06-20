@@ -45,7 +45,7 @@ public class AngleView extends View {
 
         linePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         linePaint.setStyle(Paint.Style.STROKE);
-        linePaint.setStrokeWidth(5);
+        linePaint.setStrokeWidth(10);
         linePaint.setColor(mDisplayColor);
     }
 
