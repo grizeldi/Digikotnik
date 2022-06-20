@@ -1,0 +1,5 @@
+<resources>
+    <declare-styleable name="AngleView">
+        <attr name="displayColor" format="color" />
+    </declare-styleable>
+</resources>

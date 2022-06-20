@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import com.github.grizeldi.digikotnik.AngleView;
 import com.github.grizeldi.digikotnik.R;
 
 public class MeasurementFragment extends Fragment implements SensorEventListener {
@@ -29,6 +30,7 @@ public class MeasurementFragment extends Fragment implements SensorEventListener
 
     // Views
     private TextView angleDisplayText;
+    private AngleView angleDisplayGraphic;
 
     public MeasurementFragment() {
         // Required empty public constructor
@@ -52,6 +54,7 @@ public class MeasurementFragment extends Fragment implements SensorEventListener
         // Inflate the layout for this fragment
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_measurement, container, false);
         angleDisplayText = root.findViewById(R.id.angleDisplayText);
+        angleDisplayGraphic = root.findViewById(R.id.angleDisplayBox);
         root.findViewById(R.id.resetButton).setOnClickListener(view -> {
             // Copy the values over to the origin. Can't just reassign the array because references
             originOrientation[0] = outputCache[0];
@@ -109,6 +112,7 @@ public class MeasurementFragment extends Fragment implements SensorEventListener
         outputCache = orientationAngles;
         int angle = radToDeg(orientationAngles[0] - originOrientation[0]);
         angleDisplayText.setText(getString(R.string.angle_display_text, angle));
+        angleDisplayGraphic.setAngle(orientationAngles[0] - originOrientation[0]);
     }
 
     private int radToDeg(float radians){
