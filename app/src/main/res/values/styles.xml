@@ -5,7 +5,6 @@
     </style>
 
     <style name="DigikotnikAlertDialogTheme" parent="Theme.Material3.Dark.Dialog">
-        <item name="background">@color/background</item>
         <item name="buttonBarPositiveButtonStyle">@style/DigikotnikDialogButton</item>
         <item name="buttonBarNeutralButtonStyle">@style/DigikotnikDialogButton</item>
         <item name="buttonBarNegativeButtonStyle">@style/DigikotnikDialogButton</item>
