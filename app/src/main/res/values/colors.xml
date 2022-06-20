@@ -8,4 +8,5 @@
     <color name="main_accent">#FFFDEBD6</color>
     <color name="main_accent_disabled">#D1C3B2</color>
     <color name="dark_accent">#E7B2AB</color>
+    <color name="ic_launcher_background">#4FBBE3</color>
 </resources>
